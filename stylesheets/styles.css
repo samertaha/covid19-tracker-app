@@ -1,0 +1,75 @@
+@import url('./initialize.min.css');
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 1.2rem;
+  padding-top: 2rem;
+}
+.rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+#canvas {
+  flex: 2;
+}
+#mapContainer {
+  flex: 1;
+}
+/* ---------------------------------------------------------------------------- */
+img {
+  border: 3px dashed indianred;
+}
+/* --------------------------------------------------------------------------------------------- */
+/* -----------------------------------tag clouds styles----------------------------------------- */
+#mapContainer {
+  position: relative;
+}
+#tagscloud {
+  display: none;
+  width: 250px;
+  height: 260px;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  font-size: 12px;
+  color: #333;
+  margin: 20px auto 0;
+  text-align: center;
+}
+#tagscloud a {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #333;
+  font-family: Arial;
+  text-decoration: none;
+  margin: 0 10px 15px 0;
+  line-height: 18px;
+  text-align: center;
+  font-size: 12px;
+  padding: 1px 5px;
+  display: inline-block;
+  border-radius: 3px;
+}
+#tagscloud a.tagc1 {
+  background: #666;
+  color: #fff;
+}
+#tagscloud a.tagc2 {
+  background: #f16e50;
+  color: #fff;
+}
+#tagscloud a.tagc3 {
+  background: #006633;
+  color: #fff;
+}
+#tagscloud a:hover {
+  color: #fff;
+  background: #0099ff;
+}
+/* ---------------------------------------------------------------------------------------------- */
