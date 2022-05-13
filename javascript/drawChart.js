@@ -8,7 +8,17 @@ const covidChart = (countries, cases, ref) => {
     options: {
       legend: { display: false },
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      scaleShowValues: true,
+      scales: {
+        xAxes: [
+          {
+            ticks: {
+              autoSkip: false,
+            },
+          },
+        ],
+      },
     },
   });
   return chart;

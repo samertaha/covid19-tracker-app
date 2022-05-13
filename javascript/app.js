@@ -92,7 +92,7 @@ let allCases;
 let appState = {
   continent: '',
   loading: false,
-  confirmedBtn: false,
+  confirmedBtn: true,
   recoveredBtn: false,
   criticalBtn: false,
   deathsBtn: false,
@@ -113,6 +113,7 @@ areas.forEach((area) => {
         allCases = newCovidData.getAllCasesForContinent('north_america');
         appState.continent = 'north_america';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'red';
         console.log('area clicked automatically');
         break;
       case 'south_america':
@@ -180,12 +181,80 @@ ConfirmedBtn.addEventListener('click', (e) => {
       fill: false,
     });
   } else {
+    ConfirmedBtn.style.backgroundColor = '#fff';
     chart.data.datasets = chart.data.datasets.filter(
       (obj) => obj.borderColor !== 'red'
     );
   }
   chart.update();
 });
-RecoveredBtn.addEventListener('click', (e) => {});
-CriticalBtn.addEventListener('click', (e) => {});
-DeathsBtn.addEventListener('click', (e) => {});
+
+RecoveredBtn.addEventListener('click', (e) => {
+  let countries = allCases.confirmed.map((country) => country.name);
+  let data = allCases.recovered.map((country) => country.recovered);
+  appState.recoveredBtn = appState.recoveredBtn ? false : true;
+
+  console.log('hello');
+  if (appState.recoveredBtn) {
+    console.log(appState.confirmedBtn);
+    RecoveredBtn.style.backgroundColor = 'green';
+    chart.data.labels = countries;
+    chart.data.datasets.push({
+      data: data,
+      borderColor: 'green',
+      fill: false,
+    });
+  } else {
+    RecoveredBtn.style.backgroundColor = '#fff';
+    chart.data.datasets = chart.data.datasets.filter(
+      (obj) => obj.borderColor !== 'green'
+    );
+  }
+  chart.update();
+});
+
+CriticalBtn.addEventListener('click', (e) => {
+  let countries = allCases.critical.map((country) => country.name);
+  let data = allCases.critical.map((country) => country.critical);
+  appState.criticalBtn = appState.criticalBtn ? false : true;
+
+  console.log('hello');
+  if (appState.criticalBtn) {
+    CriticalBtn.style.backgroundColor = 'orange';
+    chart.data.labels = countries;
+    chart.data.datasets.push({
+      data: data,
+      borderColor: 'orange',
+      fill: false,
+    });
+  } else {
+    CriticalBtn.style.backgroundColor = '#fff';
+    chart.data.datasets = chart.data.datasets.filter(
+      (obj) => obj.borderColor !== 'orange'
+    );
+  }
+  chart.update();
+});
+DeathsBtn.addEventListener('click', (e) => {
+  let countries = allCases.deaths.map((country) => country.name);
+  let data = allCases.deaths.map((country) => country.deaths);
+  appState.deathsBtn = appState.deathsBtn ? false : true;
+
+  if (appState.deathsBtn) {
+    DeathsBtn.style.backgroundColor = 'black';
+    DeathsBtn.style.color = 'white';
+    chart.data.labels = countries;
+    chart.data.datasets.push({
+      data: data,
+      borderColor: 'black',
+      fill: false,
+    });
+  } else {
+    DeathsBtn.style.backgroundColor = '#fff';
+    DeathsBtn.style.color = '#000';
+    chart.data.datasets = chart.data.datasets.filter(
+      (obj) => obj.borderColor !== 'black'
+    );
+  }
+  chart.update();
+});
