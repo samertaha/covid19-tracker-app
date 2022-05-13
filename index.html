@@ -10,7 +10,15 @@
   </head>
   <body>
     <div class="rowContainer">
-      <canvas id="canvas" style="max-width: 600px"></canvas>
+      <div id="chartjs">
+        <div id="buttons">
+          <button type="button" id="ConfirmedBtn">Confirmed</button>
+          <button type="button" id="RecoveredBtn">Recovered</button>
+          <button type="button" id="CriticalBtn">Critical</button>
+          <button type="button" id="DeathsBtn">Deaths</button>
+        </div>
+        <canvas id="canvas" style="max-width: 600px"></canvas>
+      </div>
       <div id="mapContainer">
         <h1 style="text-align: center">The 7 Continents</h1>
 

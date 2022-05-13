@@ -39,9 +39,153 @@ const newCovidData = {
   },
   getConfirmedCasesInContinent(continent) {
     const allCountries = this.getCountriesByContinent(continent);
-    return allCountries.map((country) => {
-      name: country.name;
-      confirmed: country.latest_data.confirmed;
-    });
+    return allCountries
+      .map((country) => {
+        return { name: country.name, confirmed: country.latest_data.confirmed };
+      })
+      .sort((a, b) => a.confirmed - b.confirmed);
+  },
+  getRecoveredCasesInContinent(continent) {
+    const allCountries = this.getCountriesByContinent(continent);
+    return allCountries
+      .map((country) => {
+        return { name: country.name, recovered: country.latest_data.recovered };
+      })
+      .sort((a, b) => a.recovered - b.recovered);
+  },
+  getCriticalCasesInContinent(continent) {
+    const allCountries = this.getCountriesByContinent(continent);
+    return allCountries
+      .map((country) => {
+        return { name: country.name, critical: country.latest_data.critical };
+      })
+      .sort((a, b) => a.critical - b.critical);
+  },
+  getDeathsCasesInContinent(continent) {
+    const allCountries = this.getCountriesByContinent(continent);
+    return allCountries
+      .map((country) => {
+        return { name: country.name, deaths: country.latest_data.deaths };
+      })
+      .sort((a, b) => a.deaths - b.deaths);
+  },
+  getAllCasesForContinent(continent) {
+    const confirmed = this.getConfirmedCasesInContinent(continent);
+    const recovered = this.getRecoveredCasesInContinent(continent);
+    const critical = this.getCriticalCasesInContinent(continent);
+    const deaths = this.getDeathsCasesInContinent(continent);
+    return {
+      confirmed: confirmed,
+      recovered: recovered,
+      critical: critical,
+      deaths: deaths,
+    };
   },
 };
+// console.log(newCovidData.getConfirmedCasesInContinent('north_america'));
+// console.log(newCovidData.getRecoveredCasesInContinent('north_america'));
+// console.log(newCovidData.getCriticalCasesInContinent('north_america'));
+// console.log(newCovidData.getDeathsCasesInContinent('north_america'));
+
+const areas = document.querySelectorAll('area');
+let allCases;
+let appState = {
+  continent: '',
+  loading: false,
+  confirmedBtn: false,
+  recoveredBtn: false,
+  criticalBtn: false,
+  deathsBtn: false,
+};
+let north_america = document.querySelector("area[href='#north_america']");
+
+const ConfirmedBtn = document.getElementById('ConfirmedBtn');
+const RecoveredBtn = document.getElementById('RecoveredBtn');
+const CriticalBtn = document.getElementById('CriticalBtn');
+const DeathsBtn = document.getElementById('DeathsBtn');
+
+areas.forEach((area) => {
+  area.addEventListener('click', (e) => {
+    e.preventDefault();
+    const continent = e.target.getAttribute('href').slice(1);
+    switch (continent) {
+      case 'north_america':
+        allCases = newCovidData.getAllCasesForContinent('north_america');
+        appState.continent = 'north_america';
+        ConfirmedBtn.click();
+        console.log('area clicked automatically');
+        break;
+      case 'south_america':
+        allCases = newCovidData.getAllCasesForContinent('south_america');
+        appState.continent = 'south_america';
+        ConfirmedBtn.click();
+        break;
+      case 'africa':
+        allCases = newCovidData.getAllCasesForContinent('africa');
+        appState.continent = 'africa';
+        ConfirmedBtn.click();
+        break;
+      case 'europe':
+        allCases = newCovidData.getAllCasesForContinent('europe');
+        appState.continent = 'europe';
+        ConfirmedBtn.click();
+        break;
+      case 'australia':
+        allCases = newCovidData.getAllCasesForContinent('australia');
+        appState.continent = 'australia';
+        ConfirmedBtn.click();
+        break;
+      case 'asia':
+        allCases = newCovidData.getAllCasesForContinent('asia');
+        appState.continent = 'asia';
+        ConfirmedBtn.click();
+        break;
+      case 'antarctica':
+        break;
+      default:
+        break;
+    }
+  });
+});
+
+north_america.click();
+
+let countries = allCases.confirmed.map((country) => country.name);
+let data = allCases.confirmed.map((country) => country.confirmed);
+let chartjs = document.querySelector('canvas#canvas').getContext('2d');
+let cases = [
+  {
+    data: data,
+    borderColor: 'red',
+    fill: false,
+  },
+];
+let chart = covidChart(countries, cases, chartjs);
+
+// console.log(north_america);
+
+ConfirmedBtn.addEventListener('click', (e) => {
+  let countries = allCases.confirmed.map((country) => country.name);
+  let data = allCases.confirmed.map((country) => country.confirmed);
+  appState.confirmedBtn = appState.confirmedBtn ? false : true;
+
+  console.log('hello');
+  if (appState.confirmedBtn) {
+    console.log(appState.confirmedBtn);
+    ConfirmedBtn.style.backgroundColor = 'red';
+    chart.data.labels = countries;
+    chart.data.datasets.push({
+      data: data,
+      borderColor: 'red',
+      fill: false,
+    });
+  } else {
+    chart.data.datasets = chart.data.datasets.filter(
+      (obj) => obj.borderColor !== 'red'
+    );
+  }
+  chart.update();
+});
+RecoveredBtn.addEventListener('click', (e) => {});
+CriticalBtn.addEventListener('click', (e) => {});
+DeathsBtn.addEventListener('click', (e) => {});
