@@ -17,15 +17,16 @@
           <button type="button" id="CriticalBtn">Critical</button>
           <button type="button" id="DeathsBtn">Deaths</button>
         </div>
-        <canvas id="canvas" style="max-width: 600px"></canvas>
+        <h3 id="continentName"></h3>
+        <canvas id="canvas" style="max-width: 700px"></canvas>
       </div>
       <div id="mapContainer">
-        <h1 style="text-align: center">The 7 Continents</h1>
+        <!-- <h1 style="text-align: center">The 7 Continents</h1>
 
         <h4 style="text-align: center">
           &#10148; Click on the dots in the image to see <br />
           Results of COVID on the left graph
-        </h4>
+        </h4> -->
 
         <map name="continents_map">
           <area shape="circle" coords="70,70,10" href="#north_america" />
@@ -44,12 +45,12 @@
         </map>
 
         <figure style="text-align: center">
-          <img usemap="#continents_map" src=https://bit.ly/2bgFrvL width="600px"
-          />
+          <img id="map" usemap="#continents_map" src=https://bit.ly/2bgFrvL
+          width="600px" />
           <figcaption>World Map</figcaption>
         </figure>
         <div id="tagscloud">
-          <a
+          <!-- <a
             href="#"
             class="tagc1"
             style="
@@ -60,81 +61,14 @@
               display: none;
             "
             >jQuery</a
-          >
-          <a
-            href="#"
-            class="tagc3"
-            style="
-              left: 136.828px;
-              top: 34.752px;
-              z-index: 102;
-              opacity: 0.111076;
-              color: rgb(255, 255, 255);
-              padding: 5px;
-              display: none;
-            "
-            >CSS</a
-          >
-          <a
-            href="#"
-            class="tagc3"
-            style="
-              left: 95.415px;
-              top: 30.9076px;
-              z-index: 103;
-              opacity: 0.119797;
-              color: rgb(255, 255, 255);
-              padding: 5px;
-              display: none;
-            "
-            >Script</a
-          >
-          <a
-            href="#"
-            class="tagc1"
-            style="
-              left: 58.2577px;
-              top: 45.3038px;
-              z-index: 107;
-              opacity: 0.181538;
-              color: rgb(255, 255, 255);
-              padding: 5px;
-            "
-            >JavaScript</a
-          >
-          <a
-            href="#"
-            class="tagc3"
-            style="
-              left: 65.4534px;
-              top: 42.9294px;
-              z-index: 119;
-              opacity: 0.389813;
-              color: rgb(255, 255, 255);
-              padding: 5px;
-            "
-            >CSS</a
-          >
-          <a
-            href="#"
-            class="tagc2"
-            style="
-              left: 108.202px;
-              top: 30.0199px;
-              z-index: 102;
-              opacity: 0.117901;
-              color: rgb(255, 255, 255);
-              padding: 5px;
-              display: none;
-            "
-            >CSS3</a
-          >
+          > -->
         </div>
       </div>
     </div>
+    <!-- <h3 id="countryName" style="text-align: center">Choose a country</h3> -->
     <div class="rowContainer results">
       <ul class="display-container">
-        <li class="note-display" data-note="7.50">
+        <li class="note-display" id="totalCases" data-note="7.50">
           <div class="circle">
             <svg width="84" height="84" class="circle__svg">
               <circle
@@ -152,15 +86,15 @@
             </svg>
 
             <div class="percent">
-              <span class="percent__int">0.</span>
-              <span class="percent__dec">00</span>
+              <span class="percent__int">0</span>
+              <!-- <span class="percent__dec"></span> -->
             </div>
           </div>
 
-          <span class="label">Transparent</span>
+          <span class="label">total cases</span>
         </li>
 
-        <li class="note-display" data-note="9.27">
+        <li class="note-display" id="newCases" data-note="9.27">
           <div class="circle">
             <svg width="84" height="84" class="circle__svg">
               <circle
@@ -179,14 +113,14 @@
 
             <div class="percent">
               <span class="percent__int">0.</span>
-              <span class="percent__dec">00</span>
+              <!-- <span class="percent__dec">00</span> -->
             </div>
           </div>
 
-          <span class="label">Reasonable</span>
+          <span class="label">new cases</span>
         </li>
 
-        <li class="note-display" data-note="6.93">
+        <li class="note-display" id="totalDeaths" data-note="6.93">
           <div class="circle">
             <svg width="84" height="84" class="circle__svg">
               <circle
@@ -205,14 +139,14 @@
 
             <div class="percent">
               <span class="percent__int">0.</span>
-              <span class="percent__dec">00</span>
+              <!-- <span class="percent__dec">00</span> -->
             </div>
           </div>
 
-          <span class="label">Usable</span>
+          <span class="label">total deaths</span>
         </li>
 
-        <li class="note-display" data-note="8.72">
+        <li class="note-display" id="newDeaths" data-note="8.72">
           <div class="circle">
             <svg width="84" height="84" class="circle__svg">
               <circle
@@ -231,11 +165,61 @@
 
             <div class="percent">
               <span class="percent__int">0.</span>
-              <span class="percent__dec">00</span>
+              <!-- <span class="percent__dec">00</span> -->
             </div>
           </div>
 
-          <span class="label">Exemplary</span>
+          <span class="label">new deaths</span>
+        </li>
+        <li class="note-display" id="totalRecovered" data-note="8.72">
+          <div class="circle">
+            <svg width="84" height="84" class="circle__svg">
+              <circle
+                cx="41"
+                cy="41"
+                r="38"
+                class="circle__progress circle__progress--path"
+              ></circle>
+              <circle
+                cx="41"
+                cy="41"
+                r="38"
+                class="circle__progress circle__progress--fill"
+              ></circle>
+            </svg>
+
+            <div class="percent">
+              <span class="percent__int">0.</span>
+              <!-- <span class="percent__dec">00</span> -->
+            </div>
+          </div>
+
+          <span class="label">total recovered</span>
+        </li>
+        <li class="note-display" id="inCritical" data-note="8.72">
+          <div class="circle">
+            <svg width="84" height="84" class="circle__svg">
+              <circle
+                cx="41"
+                cy="41"
+                r="38"
+                class="circle__progress circle__progress--path"
+              ></circle>
+              <circle
+                cx="41"
+                cy="41"
+                r="38"
+                class="circle__progress circle__progress--fill"
+              ></circle>
+            </svg>
+
+            <div class="percent">
+              <span class="percent__int">0.</span>
+              <!-- <span class="percent__dec">00</span> -->
+            </div>
+          </div>
+
+          <span class="label">in critical condition</span>
         </li>
       </ul>
     </div>

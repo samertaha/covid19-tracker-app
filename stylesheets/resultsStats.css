@@ -67,6 +67,12 @@ body {
 .note-display:nth-child(4) .circle__progress {
   stroke: #00aaff;
 }
+.note-display:nth-child(5) .circle__progress {
+  stroke: #b92929;
+}
+.note-display:nth-child(6) .circle__progress {
+  stroke: #c9671d;
+}
 
 .percent {
   width: 100%;

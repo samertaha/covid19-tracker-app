@@ -81,6 +81,9 @@ const newCovidData = {
       deaths: deaths,
     };
   },
+  getCountryByCode(code) {
+    return covidData.find((country) => country.code === code);
+  },
 };
 // console.log(newCovidData.getConfirmedCasesInContinent('north_america'));
 // console.log(newCovidData.getRecoveredCasesInContinent('north_america'));
@@ -103,6 +106,21 @@ const ConfirmedBtn = document.getElementById('ConfirmedBtn');
 const RecoveredBtn = document.getElementById('RecoveredBtn');
 const CriticalBtn = document.getElementById('CriticalBtn');
 const DeathsBtn = document.getElementById('DeathsBtn');
+let continentName = document.getElementById('continentName');
+const tagscloud = document.getElementById('tagscloud');
+const countryName = document.getElementById('countryName');
+const map = document.getElementById('map');
+
+const totalCases = document.querySelector('.results #totalCases');
+const newCases = document.querySelector('.results #newCases');
+const totalDeaths = document.querySelector('.results #totalDeaths');
+const newDeaths = document.querySelector('.results #newDeaths');
+const totalRecovered = document.querySelector('.results #totalRecovered');
+const inCritical = document.querySelector('.results #inCritical');
+
+// console.log('totalCases', totalCases);
+const styles = ['tagc1', 'tagc2', 'tagc3'];
+let names;
 
 areas.forEach((area) => {
   area.addEventListener('click', (e) => {
@@ -113,33 +131,75 @@ areas.forEach((area) => {
         allCases = newCovidData.getAllCasesForContinent('north_america');
         appState.continent = 'north_america';
         ConfirmedBtn.click();
-        ConfirmedBtn.style.backgroundColor = 'red';
-        console.log('area clicked automatically');
+        ConfirmedBtn.style.backgroundColor = 'orange';
+        continentName.style.color = '#90EE90';
+        continentName.textContent = 'north america';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            //drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'south_america':
         allCases = newCovidData.getAllCasesForContinent('south_america');
         appState.continent = 'south_america';
         ConfirmedBtn.click();
+        continentName.style.color = 'green';
+        continentName.textContent = 'south america';
         break;
       case 'africa':
         allCases = newCovidData.getAllCasesForContinent('africa');
         appState.continent = 'africa';
         ConfirmedBtn.click();
+        continentName.style.color = '#8B8000';
+        continentName.textContent = 'africa';
         break;
       case 'europe':
         allCases = newCovidData.getAllCasesForContinent('europe');
         appState.continent = 'europe';
         ConfirmedBtn.click();
+        continentName.style.color = 'red';
+        continentName.textContent = 'europe';
         break;
       case 'australia':
         allCases = newCovidData.getAllCasesForContinent('australia');
         appState.continent = 'australia';
         ConfirmedBtn.click();
+        continentName.style.color = 'red';
+        continentName.textContent = 'australia';
         break;
       case 'asia':
         allCases = newCovidData.getAllCasesForContinent('asia');
         appState.continent = 'asia';
         ConfirmedBtn.click();
+        continentName.style.color = 'orange';
+        continentName.textContent = 'asia';
         break;
       case 'antarctica':
         break;
@@ -157,7 +217,7 @@ let chartjs = document.querySelector('canvas#canvas').getContext('2d');
 let cases = [
   {
     data: data,
-    borderColor: 'red',
+    borderColor: 'orange',
     fill: false,
   },
 ];
@@ -170,20 +230,18 @@ ConfirmedBtn.addEventListener('click', (e) => {
   let data = allCases.confirmed.map((country) => country.confirmed);
   appState.confirmedBtn = appState.confirmedBtn ? false : true;
 
-  console.log('hello');
   if (appState.confirmedBtn) {
-    console.log(appState.confirmedBtn);
-    ConfirmedBtn.style.backgroundColor = 'red';
+    ConfirmedBtn.style.backgroundColor = 'orange';
     chart.data.labels = countries;
     chart.data.datasets.push({
       data: data,
-      borderColor: 'red',
+      borderColor: 'orange',
       fill: false,
     });
   } else {
     ConfirmedBtn.style.backgroundColor = '#fff';
     chart.data.datasets = chart.data.datasets.filter(
-      (obj) => obj.borderColor !== 'red'
+      (obj) => obj.borderColor !== 'orange'
     );
   }
   chart.update();
@@ -220,17 +278,17 @@ CriticalBtn.addEventListener('click', (e) => {
 
   console.log('hello');
   if (appState.criticalBtn) {
-    CriticalBtn.style.backgroundColor = 'orange';
+    CriticalBtn.style.backgroundColor = 'red';
     chart.data.labels = countries;
     chart.data.datasets.push({
       data: data,
-      borderColor: 'orange',
+      borderColor: 'red',
       fill: false,
     });
   } else {
     CriticalBtn.style.backgroundColor = '#fff';
     chart.data.datasets = chart.data.datasets.filter(
-      (obj) => obj.borderColor !== 'orange'
+      (obj) => obj.borderColor !== 'red'
     );
   }
   chart.update();
@@ -257,4 +315,9 @@ DeathsBtn.addEventListener('click', (e) => {
     );
   }
   chart.update();
+});
+
+map.addEventListener('click', (e) => {
+  tagscloud.textContent = '';
+  tagscloud.style.display = 'none';
 });
