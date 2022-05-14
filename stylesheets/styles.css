@@ -16,7 +16,17 @@ body {
   align-items: center;
   text-align: center;
 }
+.display-container {
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
 @media (max-width: 768px) {
+  .display-container,
   .rowContainer {
     flex-wrap: wrap;
   }
