@@ -14,7 +14,7 @@ body {
   font-family: 'Nixie One', cursive;
 } */
 .rowContainer.results {
-  height: 20vh;
+  height: 100%;
   background: rgba(205, 92, 92, 0.45);
   font-family: 'Nixie One', cursive;
   padding: 1rem 0;
