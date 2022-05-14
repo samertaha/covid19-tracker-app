@@ -160,7 +160,7 @@ areas.forEach((area) => {
               country.latest_data.recovered
             );
             inCritical.setAttribute('data-note', country.latest_data.critical);
-            //drawResults();
+            drawResults();
           });
         });
         tagscloud.style.display = 'block';
@@ -170,36 +170,196 @@ areas.forEach((area) => {
         allCases = newCovidData.getAllCasesForContinent('south_america');
         appState.continent = 'south_america';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'orange';
         continentName.style.color = 'green';
         continentName.textContent = 'south america';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'africa':
         allCases = newCovidData.getAllCasesForContinent('africa');
         appState.continent = 'africa';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'orange';
         continentName.style.color = '#8B8000';
         continentName.textContent = 'africa';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'europe':
         allCases = newCovidData.getAllCasesForContinent('europe');
         appState.continent = 'europe';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'orange';
         continentName.style.color = 'red';
         continentName.textContent = 'europe';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'australia':
         allCases = newCovidData.getAllCasesForContinent('australia');
         appState.continent = 'australia';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'orange';
         continentName.style.color = 'red';
         continentName.textContent = 'australia';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'asia':
         allCases = newCovidData.getAllCasesForContinent('asia');
         appState.continent = 'asia';
         ConfirmedBtn.click();
+        ConfirmedBtn.style.backgroundColor = 'orange';
         continentName.style.color = 'orange';
         continentName.textContent = 'asia';
+
+        newCovidData.getCountriesByContinent(continent).forEach((country) => {
+          const a = document.createElement('a');
+          const rand = Math.floor(Math.random() * 3) + 1;
+          a.innerText = country.name;
+          a.setAttribute('code', country.code);
+          a.setAttribute('href', '#');
+          a.classList.add(styles[rand - 1]);
+          tagscloud.appendChild(a);
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(e.target.getAttribute('code'));
+
+            const country = newCovidData.getCountryByCode(
+              e.target.getAttribute('code')
+            );
+            countryName.textContent = country.name;
+            totalCases.setAttribute('data-note', country.latest_data.confirmed);
+            newCases.setAttribute('data-note', country.today.confirmed);
+            totalDeaths.setAttribute('data-note', country.latest_data.deaths);
+            newDeaths.setAttribute('data-note', country.today.deaths);
+            totalRecovered.setAttribute(
+              'data-note',
+              country.latest_data.recovered
+            );
+            inCritical.setAttribute('data-note', country.latest_data.critical);
+            drawResults();
+          });
+        });
+        tagscloud.style.display = 'block';
+        runTagCloud();
         break;
       case 'antarctica':
         break;

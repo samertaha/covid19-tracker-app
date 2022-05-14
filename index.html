@@ -18,7 +18,10 @@
           <button type="button" id="DeathsBtn">Deaths</button>
         </div>
         <h3 id="continentName"></h3>
-        <canvas id="canvas" style="max-width: 700px"></canvas>
+        <canvas
+          id="canvas"
+          style="width: 100%; max-width: 100%; min-width: 50%"
+        ></canvas>
       </div>
       <div id="mapContainer">
         <!-- <h1 style="text-align: center">The 7 Continents</h1>
@@ -27,7 +30,7 @@
           &#10148; Click on the dots in the image to see <br />
           Results of COVID on the left graph
         </h4> -->
-
+        <h3 id="countryName" style="text-align: center">Choose a country</h3>
         <map name="continents_map">
           <area shape="circle" coords="70,70,10" href="#north_america" />
 
@@ -46,7 +49,7 @@
 
         <figure style="text-align: center">
           <img id="map" usemap="#continents_map" src=https://bit.ly/2bgFrvL
-          width="600px" />
+          width="100%" style="min-width:400px;" />
           <figcaption>World Map</figcaption>
         </figure>
         <div id="tagscloud">
