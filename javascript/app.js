@@ -1,6 +1,8 @@
 import { allCountries } from '../data/countries_data.js';
 import { covidData } from '../data/covid_data.js';
 
+console.log(covidData);
+console.log(allCountries);
 const globe = {
   theSevenContinents: {
     north_america: ['Northern America', 'Caribbean'],
@@ -164,7 +166,9 @@ areas.forEach((area) => {
           });
         });
         tagscloud.style.display = 'block';
+
         runTagCloud();
+        tagscloud.lastChild.click();
         break;
       case 'south_america':
         allCases = newCovidData.getAllCasesForContinent('south_america');
@@ -453,6 +457,7 @@ CriticalBtn.addEventListener('click', (e) => {
   }
   chart.update();
 });
+
 DeathsBtn.addEventListener('click', (e) => {
   let countries = allCases.deaths.map((country) => country.name);
   let data = allCases.deaths.map((country) => country.deaths);
