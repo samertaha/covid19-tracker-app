@@ -10,7 +10,7 @@ const drawResults = () => {
     strokeTransition(display, note);
 
     increaseNumber(display, int, 'int');
-    increaseNumber(display, dec, 'dec');
+    //increaseNumber(display, dec, 'dec');
   });
 
   function strokeTransition(display, note) {
