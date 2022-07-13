@@ -10692,9 +10692,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch(
-      'https://nameless-citadel-58066.herokuapp.com/' + url
-    );
+    const res = await fetch('https://thingproxy.freeboard.io/fetch/' + url);
     const data = await res.json();
     return data;
   } catch (e) {
