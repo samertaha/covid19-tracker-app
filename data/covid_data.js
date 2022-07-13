@@ -6484,7 +6484,12 @@
 async function fetchData(url) {
   try {
     const res = await fetch(
-      'https://nameless-citadel-58066.herokuapp.com/' + url
+      'https://nameless-citadel-58066.herokuapp.com/' + url,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: headers,
+      }
     );
     const data = await res.json();
     return data.data;
