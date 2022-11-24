@@ -6483,7 +6483,9 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://cors.bridged.cc/' + url);
+    const res = await fetch('https://cors.bridged.cc/' + url, {
+      mode: 'no-cors',
+    });
     const data = await res.json();
     return data.data;
   } catch (e) {
