@@ -6483,7 +6483,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://api.allorigins.win/raw?url=' + url);
+    const res = await fetch('https://proxy.cors.sh/' + url);
     const data = await res.json();
     return data.data;
   } catch (e) {
