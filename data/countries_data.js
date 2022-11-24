@@ -10692,7 +10692,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://cors-anywhere.herokuapp.com/' + url);
+    const res = await fetch('https://cors.bridged.cc/' + url);
     const data = await res.json();
     return data;
   } catch (e) {
