@@ -10692,7 +10692,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://proxy.cors.sh/' + url);
+    const res = await fetch('https://cors-anywhere.herokuapp.com/' + url);
     const data = await res.json();
     return data;
   } catch (e) {
