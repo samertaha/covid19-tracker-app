@@ -6483,7 +6483,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://cors-proxy.htmldriven.com/?url=' + url);
+    const res = await fetch('https://thingproxy.freeboard.io/fetch/' + url);
     const data = await res.json();
     return data.data;
   } catch (e) {
