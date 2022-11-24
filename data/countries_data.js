@@ -10691,13 +10691,8 @@
 // ];
 
 async function fetchData(url) {
-  const headers = {};
   try {
-    const res = await fetch('https://cors.bridged.cc/' + url, {
-      method: 'GET',
-      mode: 'no-cors',
-      headers: headers,
-    });
+    const res = await fetch('https://cors-proxy.htmldriven.com/?url=' + url);
     const data = await res.json();
     return data;
   } catch (e) {
