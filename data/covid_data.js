@@ -6482,10 +6482,11 @@
 // console.log(covidData);
 
 async function fetchData(url) {
+  const headers = {};
   try {
     const res = await fetch('https://cors.bridged.cc/' + url, {
       method: 'GET',
-      mode: 'cors',
+      mode: 'no-cors',
       headers: headers,
     });
     const data = await res.json();
