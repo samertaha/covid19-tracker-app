@@ -10693,7 +10693,9 @@
 async function fetchData(url) {
   try {
     const res = await fetch('https://cors.bridged.cc/' + url, {
-      mode: 'no-cors',
+      method: 'GET',
+      mode: 'cors',
+      headers: headers,
     });
     const data = await res.json();
     return data;
