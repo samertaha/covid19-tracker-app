@@ -10692,7 +10692,7 @@
 
 async function fetchData(url) {
   try {
-    const res = await fetch('https://thingproxy.freeboard.io/fetch/' + url);
+    const res = await fetch('http://www.whateverorigin.org/get?url=' + url);
     const data = await res.json();
     return data;
   } catch (e) {
